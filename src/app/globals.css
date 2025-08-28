@@ -44,7 +44,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
@@ -74,8 +74,15 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
-  --background: oklch(1 0 0);
+  --background: #F9FAFB;
   --foreground: oklch(0.129 0.042 264.695);
+  
+  /* Modern gradient variables */
+  --gradient-primary: linear-gradient(135deg, #6366F1, #8B5CF6);
+  --gradient-secondary: linear-gradient(135deg, #06B6D4, #3B82F6);
+  --gradient-accent: linear-gradient(135deg, #F43F5E, #F97316);
+  --gradient-hero: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --gradient-card: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
 }
 
 .dark {
@@ -119,4 +126,51 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Modern gradient utilities */
+.gradient-primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-secondary {
+  background: var(--gradient-secondary);
+}
+
+.gradient-accent {
+  background: var(--gradient-accent);
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+}
+
+.gradient-card {
+  background: var(--gradient-card);
+}
+
+/* Glass morphism effect */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Smooth animations */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+  to { box-shadow: 0 0 30px rgba(99, 102, 241, 0.8); }
 }

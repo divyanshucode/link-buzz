@@ -41,30 +41,86 @@ export default function ShareProfile({ username }: { username: string }) {
           <Share2 className="mr-2 h-4 w-4" /> Share
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>Share this Profile</DialogTitle>
+      <DialogContent className="sm:max-w-md bg-white/95 backdrop-blur-sm border-gray-200 shadow-xl">
+        <DialogHeader className="space-y-3">
+          <DialogTitle className="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+            <Share2 className="w-5 h-5 text-blue-600" />
+            <span>Share Profile</span>
+          </DialogTitle>
         </DialogHeader>
-        <div className="flex items-center space-x-2">
-          <div className="grid flex-1 gap-2">
-            <Input id="link" defaultValue={shareUrl} readOnly />
+        
+        <div className="space-y-4 pt-2">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-700">Profile URL</label>
+            <div className="flex items-center space-x-2">
+              <div className="flex-1">
+                <Input 
+                  id="link" 
+                  defaultValue={shareUrl} 
+                  readOnly 
+                  className="bg-gray-50 border-gray-200 text-gray-700 focus:ring-blue-500 focus:border-blue-500"
+                />
+              </div>
+              <Button 
+                onClick={handleCopy} 
+                size="sm" 
+                className={`px-4 transition-all duration-200 ${
+                  copied 
+                    ? 'bg-green-600 hover:bg-green-700 text-white' 
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                }`}
+              >
+                {copied ? (
+                  <span className="text-xs font-medium">Copied!</span>
+                ) : (
+                  <>
+                    <Copy className="h-4 w-4 mr-1" />
+                    <span className="text-xs font-medium">Copy</span>
+                  </>
+                )}
+              </Button>
+            </div>
           </div>
-          <Button onClick={handleCopy} size="sm" className="px-3">
-            <span className="sr-only">Copy</span>
-            {copied ? 'Copied!' : <Copy className="h-4 w-4" />}
-          </Button>
-        </div>
-        <div className="flex items-center justify-center space-x-2 mt-2">
-            <Button asChild variant="outline" size="icon">
-                <a href={`https://wa.me/?text=${shareText}`} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp">
-                    <WhatsAppIcon />
+
+          <div className="space-y-3">
+            <label className="text-sm font-medium text-gray-700">Share on Social Media</label>
+            <div className="flex items-center justify-center space-x-3">
+              <Button 
+                asChild 
+                variant="outline" 
+                size="sm"
+                className="border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200"
+              >
+                <a 
+                  href={`https://wa.me/?text=${shareText}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Share on WhatsApp"
+                  className="flex items-center space-x-2 px-4 py-2"
+                >
+                  <WhatsAppIcon />
+                  <span className="text-sm font-medium">WhatsApp</span>
                 </a>
-            </Button>
-            <Button asChild variant="outline" size="icon">
-                <a href={`https://twitter.com/intent/tweet?text=${shareText}`} target="_blank" rel="noopener noreferrer" aria-label="Share on X">
-                    <XIcon />
+              </Button>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="sm"
+                className="border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200"
+              >
+                <a 
+                  href={`https://twitter.com/intent/tweet?text=${shareText}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label="Share on X"
+                  className="flex items-center space-x-2 px-4 py-2"
+                >
+                  <XIcon />
+                  <span className="text-sm font-medium">X (Twitter)</span>
                 </a>
-            </Button>
+              </Button>
+            </div>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
