@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
 export async function DELETE(
     request: Request,
-    { params }: { params: { linkId: string } }
+    { params }: { params: Promise<{ linkId: string }> }
     //params : { linkId } is the ID of the link to delete we get from the URL
 ) {
     try {
@@ -25,7 +25,7 @@ export async function DELETE(
             return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
         }
 
-        const linkId = params.linkId;
+        const { linkId } = await params;
         const link = await prisma.link.findUnique({ where: { id: linkId } });
 
         // Security Check: Ensure the user owns this link before deleting
@@ -44,7 +44,7 @@ export async function DELETE(
 
 }
 
-export async function PUT(request: Request, { params }: { params: { linkId: string } }) {
+export async function PUT(request: Request, { params }: { params: Promise<{ linkId: string }> }) {
     try {
         const cookieStore = await cookies();
         const token = cookieStore.get('auth_token')?.value;
@@ -59,7 +59,7 @@ export async function PUT(request: Request, { params }: { params: { linkId: stri
             return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
         }
 
-        const linkId = params.linkId;
+        const { linkId } = await params;
         const link = await prisma.link.findUnique({ where: { id: linkId } });
 
         // Security Check: Ensure the user owns this link before deleting
