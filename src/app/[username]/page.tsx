@@ -14,9 +14,9 @@ import ShareProfile from './ShareProfile';
 export async function generateMetadata({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }): Promise<Metadata> {
-  const username = params.username;
+  const { username } = await params;
   
   const user = await prisma.user.findUnique({
     where: { username },
@@ -49,9 +49,9 @@ export async function generateMetadata({
 export default async function UserProfilePage({
   params,
 }: {
-  params: { username: string };
+  params: Promise<{ username: string }>;
 }) {
-  const username = params.username;
+  const { username } = await params;
 
   // Fetch the user and their links from the database
   const user = await prisma.user.findUnique({
