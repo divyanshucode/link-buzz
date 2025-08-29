@@ -2,6 +2,7 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { verify } from 'jsonwebtoken';
 import { prisma } from '@/lib/prisma';
+import { JWTPayload } from '@/types/auth';
 import LinkManager from './LinkManager';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -33,9 +34,9 @@ export default async function DashboardPage() {
 
   let userId;
   try {
-    const payload: any = verify(token, JWT_SECRET);
+    const payload = verify(token, JWT_SECRET) as JWTPayload;
     userId = payload.userId;
-  } catch (err) {
+  } catch {
     redirect('/login');
   }
 

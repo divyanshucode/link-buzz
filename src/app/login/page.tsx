@@ -16,7 +16,7 @@ export default async function LoginPage() {
       verify(token, JWT_SECRET);
       // If token is valid, redirect to dashboard
       redirect('/dashboard');
-    } catch (error) {
+    } catch {
       // If token is invalid, just continue to show the login form
     }
   }

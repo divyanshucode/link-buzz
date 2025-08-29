@@ -4,6 +4,7 @@ import { verify } from 'jsonwebtoken';
 import { prisma } from '@/lib/prisma';
 import { Prisma } from '@prisma/client';
 import bcrypt from 'bcrypt';
+import { JWTPayload } from '@/types/auth';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
@@ -17,7 +18,7 @@ export async function PUT(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { userId }: any = verify(token, JWT_SECRET);
+    const { userId } = verify(token, JWT_SECRET) as JWTPayload;
 
     if (!userId) {
       return NextResponse.json({ error: 'Invalid token' }, { status: 401 });

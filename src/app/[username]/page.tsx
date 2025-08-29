@@ -1,6 +1,7 @@
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
 import type { Link as LinkType } from '@prisma/client';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,6 +10,41 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { ExternalLink, Sparkles, Users } from 'lucide-react';
 import ShareProfile from './ShareProfile';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { username: string };
+}): Promise<Metadata> {
+  const username = params.username;
+  
+  const user = await prisma.user.findUnique({
+    where: { username },
+    include: { links: true },
+  });
+
+  if (!user) {
+    return {
+      title: 'User Not Found - Link-Buzz',
+      description: 'The requested user profile could not be found.',
+    };
+  }
+
+  return {
+    title: `@${user.username} - Link-Buzz`,
+    description: `Check out @${user.username}'s Link-Buzz profile with ${user.links.length} links. Join Link-Buzz to create your own profile.`,
+    openGraph: {
+      title: `@${user.username} - Link-Buzz`,
+      description: `Check out @${user.username}'s Link-Buzz profile with ${user.links.length} links.`,
+      type: 'profile',
+    },
+    twitter: {
+      card: 'summary',
+      title: `@${user.username} - Link-Buzz`,
+      description: `Check out @${user.username}'s Link-Buzz profile with ${user.links.length} links.`,
+    },
+  };
+}
 
 export default async function UserProfilePage({
   params,

@@ -201,7 +201,7 @@ export default function ProfileEditModal({ initialUsername }: ProfileEditModalPr
         router.refresh();
       }, 1000);
 
-    } catch (err) {
+    } catch {
       setErrors(prev => ({ ...prev, general: 'An unexpected error occurred' }));
     } finally {
       setIsLoading(false);

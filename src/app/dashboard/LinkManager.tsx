@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
 import { 
   Plus, 
   Edit3, 
@@ -58,8 +57,8 @@ export default function LinkManager({ initialLinks }: { initialLinks: Link[] }) 
       setNewLinkTitle('');
       setNewLinkUrl('');
       router.refresh();
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
     }
@@ -175,7 +174,7 @@ export default function LinkManager({ initialLinks }: { initialLinks: Link[] }) 
         
         {initialLinks.length > 0 ? (
           <div className="space-y-3">
-            {initialLinks.map((link, index) => (
+            {initialLinks.map((link) => (
               <Card key={link.id} className="border-0 shadow-sm hover:shadow-md transition-shadow">
                 <CardContent className="p-4">
                   {editingLink?.id === link.id ? (
