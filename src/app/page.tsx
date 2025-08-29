@@ -166,7 +166,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-white/90 mb-6 italic">
-                  "As an entrepreneur, Link-Buzz helps me showcase all my ventures in one place. It's professional and beautiful."
+                  &quot;As an entrepreneur, Link-Buzz helps me showcase all my ventures in one place. It&apos;s professional and beautiful.&quot;
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-green-400 rounded-full flex items-center justify-center mr-4">
