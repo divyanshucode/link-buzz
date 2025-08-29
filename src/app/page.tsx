@@ -96,7 +96,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-4">Lightning Fast</h3>
                 <p className="text-white/80">
-                  Create your link page in seconds. No coding required, just add your links and go live instantly.
+                  &quot;This platform is a game-changer! I can&apos;t believe how easy it is to create a beautiful link page. Highly recommended!&quot;
                 </p>
               </CardContent>
             </Card>
@@ -144,7 +144,7 @@ export default function HomePage() {
                   ))}
                 </div>
                 <p className="text-white/90 mb-6 italic">
-                  "Link-Buzz transformed how I share my content. It's so simple yet powerful. My engagement has increased by 300%!"
+                  &quot;Link-Buzz transformed how I share my content. It&apos;s so simple yet powerful. My engagement has increased by 300%!&quot;
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full flex items-center justify-center mr-4">

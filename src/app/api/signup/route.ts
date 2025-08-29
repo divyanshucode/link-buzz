@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       },
     });
 
-    const { passwordHash: _, ...userWithoutPassword } = newUser;
+    const { passwordHash: _passwordHash, ...userWithoutPassword } = newUser;
 
     return NextResponse.json(userWithoutPassword, { status: 201 });
   } catch (error) {

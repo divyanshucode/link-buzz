@@ -18,8 +18,7 @@ import {
   BarChart3,
   Users,
   Link as LinkIcon,
-  Sparkles,
-  Settings
+  Sparkles
 } from 'lucide-react';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
@@ -90,10 +89,10 @@ export default async function DashboardPage() {
                   </Button>
                   <ProfileEditModal initialUsername={user.username} />
                   <Button asChild variant="outline" className="w-full sm:w-auto border-red-200 text-red-600 hover:bg-red-50">
-                    <a href="/api/logout" className="flex items-center">
+                    <Link href="/api/logout" className="flex items-center">
                       <LogOut className="w-4 h-4 mr-2" />
                       Logout
-                    </a>
+                    </Link>
                   </Button>
                 </div>
               </div>

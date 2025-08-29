@@ -3,7 +3,7 @@ import { verify } from 'jsonwebtoken';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, User, LogOut, LayoutDashboard } from 'lucide-react';
+import { Sparkles, User, LayoutDashboard } from 'lucide-react';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret';
 
@@ -17,7 +17,7 @@ export default async function Header() {
       verify(token, JWT_SECRET);
       isLoggedIn = true;
     }
-  } catch (error) {
+  } catch {
     isLoggedIn = false;
   }
 
